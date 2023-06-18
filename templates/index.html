@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Candlestick Chart and Pie Chart</title>
+    <!-- Include the necessary Plotly JavaScript and CSS files -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css">
+</head>
+<body>
+    <!-- Div element for the candlestick chart -->
+    <div id="candlestick-chart"></div>
+
+    <!-- Div element for the pie chart -->
+    <div id="pie-chart"></div>
+
+    <script>
+        // Retrieve the candlestick chart data from the Flask app
+        var candlestickChartData = {{ candlestick_chart|safe }};
+
+        // Retrieve the market cap pie chart data from the Flask app
+        var marketCapPieChartData = {{ market_cap_pie_chart|safe }};
+
+        // Create candlestick chart
+        Plotly.newPlot('candlestick-chart', candlestickChartData.data, candlestickChartData.layout);
+
+        // Create market cap pie chart
+        Plotly.newPlot('pie-chart', marketCapPieChartData.data, marketCapPieChartData.layout);
+    </script>
+</body>
+</html>
